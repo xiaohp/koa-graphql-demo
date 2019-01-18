@@ -122,3 +122,11 @@ console.log(`Running a GraphQL API server at http://localhost:${port}/graphql`)
 //     content
 //   }
 // }
+
+// mutation {
+//   deleteMessage(id: "4f008b9894d9f5f97834") {
+//     id
+//     author
+//     content
+//   }
+// }
