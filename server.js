@@ -69,14 +69,18 @@ const root = {
 }
 
 const app = new Koa()
-app.use(mount('/graphql', graphqlHTTP({
+
+const main = mount('/graphql', graphqlHTTP({
     schema: schema,
     rootValue: root,
     graphiql: true,
-})))
+}))
 
-app.listen(5000)
-console.log('Running a GraphQL API server at http://localhost:5000/graphql')
+const port = 5000
+
+app.use(main)
+app.listen(port)
+console.log(`Running a GraphQL API server at http://localhost:${port}/graphql`)
 
 // 使用
 // mutation {
@@ -96,7 +100,7 @@ console.log('Running a GraphQL API server at http://localhost:5000/graphql')
 //   random
 //   hello
 // }
-// 
+//
 // mutation {
 //   updateMessage(id: "379c65fefa39ae53a7ee", input: {
 //     content: "new content",
