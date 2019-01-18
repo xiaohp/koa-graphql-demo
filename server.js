@@ -3,23 +3,23 @@ const mount = require('koa-mount')
 const graphqlHTTP = require('koa-graphql')
 const { buildSchema } = require('graphql')
 
- // Construct a schema, using GraphQL schema language
+// Construct a schema, using GraphQL schema language
 const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
+    type Query {
+        hello: String
+    }
 `)
 
- // The root provides a resolver function for each API endpoint
+// The root provides a resolver function for each API endpoint
 const root = {
-  hello: () => 'Hello Koa GraphQL!',
+    hello: () => 'Hello Koa GraphQL!',
 }
 
 const app = new Koa()
 app.use(mount('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
+    schema: schema,
+    rootValue: root,
+    graphiql: true,
 })))
 
 app.listen(5000)
