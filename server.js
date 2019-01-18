@@ -20,6 +20,7 @@ const schema = buildSchema(`
     type Mutation {
         createMessage(input: MessageInput): Message
         updateMessage(id: ID!, input: MessageInput): Message
+        deleteMessage(id: ID!): Message
     }
 
     type Query {
@@ -65,6 +66,16 @@ const root = {
         // 更新数据
         fakeDatabase[id] = input
         return new Message(id, input)
+    },
+    deleteMessage: ({ id }) => {
+        if (!fakeDatabase[id]) {
+            throw new Error('no message exists with id ' + id)
+        }
+        const input = fakeDatabase[id]
+        const message = new Message(id, input)
+        // 删除数据
+        delete fakeDatabase[id]
+        return message
     },
 }
 
