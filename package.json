@@ -1,0 +1,15 @@
+{
+  "name": "koa-graphql-demo",
+  "version": "1.0.0",
+  "description": "a koa GraphQL demo",
+  "main": "server.js",
+  "repository": "https://github.com/xiaohp/koa-graphql-demo.git",
+  "author": "xiaohp <xiaohp1993@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "graphql": "^14.1.1",
+    "koa": "^2.6.2",
+    "koa-graphql": "^0.8.0",
+    "koa-mount": "^4.0.0"
+  }
+}
