@@ -3,6 +3,8 @@ const mount = require('koa-mount')
 const graphqlHTTP = require('koa-graphql')
 const { buildSchema } = require('graphql')
 const crypto = require('crypto')
+const path = require('path')
+const staticServe = require('koa-static')
 
 // 使用 GraphQL schema language 构建一个 schema
 const schema = buildSchema(`
@@ -81,6 +83,8 @@ const root = {
 
 const app = new Koa()
 
+const staticFile = staticServe(path.join(__dirname, './static'))
+
 const main = mount('/graphql', graphqlHTTP({
     schema: schema,
     rootValue: root,
@@ -89,6 +93,7 @@ const main = mount('/graphql', graphqlHTTP({
 
 const port = 5000
 
+app.use(staticFile)
 app.use(main)
 app.listen(port)
 console.log(`Running a GraphQL API server at http://localhost:${port}/graphql`)
